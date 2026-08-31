@@ -44,10 +44,9 @@ Every successful reservation is stored in the passenger's trip history.
 
 The history includes:
 
-- Passenger ID
-- Passenger name
 - Car code
 - Final trip cost
+  since the trips of the user, will be shown so no need for the id and name
 
 ### Input Validation & Exception Handling
 The system handles several invalid inputs:
