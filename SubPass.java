@@ -26,9 +26,7 @@ public class SubPass extends Passenger{
                     "\nTrip cost: "+ ( super.getTripCost() )  );
 
 //store the trip with the price
-            trips.add("ID: " + getId()+
-                    "\nName: " + getName()+
-                    "\nCar code: " + car.getCode()+
+            trips.add("Car code: " + car.getCode()+
                     "\nTrip cost: "+ ( super.getTripCost() )  );
 
         }

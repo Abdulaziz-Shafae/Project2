@@ -197,6 +197,12 @@ public class Project_2 {
                             choice=4;
                             Thread.sleep(1500);
 
+                            sp1.reserveCar(c1);
+                            sp2.reserveCar(c1);
+                            sp2.reserveCar(c3);
+                            nsp1.reserveCar(c5);
+                            nsp2.reserveCar(c5);
+
                             System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                             System.out.println("\n\n----- "+ITALIC+CYAN+"Welcome "+ curP.getName() +RESET+MAIN+" -----");
 
