@@ -86,6 +86,5 @@ The system handles several invalid inputs:
 
 - Java
 - Object-Oriented Programming (OOP)
-- Java Collections
 - Java Exception Handling
 - ANSI terminal styling
