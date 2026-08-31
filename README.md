@@ -4,25 +4,25 @@
 
 The original project requirements were expanded with additional functionality to make the system more interactive and realistic.
 
-# Account System
+## Account System
 - Create a new passenger account.
 - Sign in using a 4-digit passenger ID.
 - Prevent duplicate IDs.
 - Validate that IDs contain numbers only.
 - New accounts start as `NonSubPass`.
 
-# Discount Codes
+## Discount Codes
 - Non-subscribers can enter a discount code when creating an account.
 - Discount codes are validated against a stored list.
 - Invalid codes can be retried.
 
-# Subscription System
+## Subscription System
 Passengers can change their subscription status from the user menu.
 
 - Users can subscribe or unsubscribe at any time.
 - Trip history is preserved when changing subscription type.
 
-# Car Reservation
+## Car Reservation
 Users can:
 
 - View all cars.
@@ -32,14 +32,14 @@ Users can:
 - Receive an error if the car has zero capacity.
 - Automatically calculate the final trip price based on passenger type.
 
-# Routes
+## Routes
 Users can view available routes including:
 
 - Pick-up location
 - Destination
 - Base trip price
 
-# Trip History
+## Trip History
 Every successful reservation is stored in the passenger's trip history.
 
 The history includes:
@@ -49,7 +49,7 @@ The history includes:
 - Car code
 - Final trip cost
 
-# Input Validation & Exception Handling
+## Input Validation & Exception Handling
 The system handles several invalid inputs:
 
 - Non-numeric menu choices.
@@ -60,7 +60,7 @@ The system handles several invalid inputs:
 - Cars with zero capacity.
 - Cars that have reached maximum capacity.
 
-# OOP Concepts Used
+## OOP Concepts Used
 
 - Inheritance
 - Abstraction
@@ -73,7 +73,7 @@ The system handles several invalid inputs:
 - `instanceof`
 - Object relationships
 
-# Main Classes
+## Main Classes
 
 - `Passenger` — Abstract parent class.
 - `SubPass` — Subscriber passenger with 50% discount.
@@ -82,7 +82,7 @@ The system handles several invalid inputs:
 - `Route` — Stores pick-up, destination and trip price.
 - `Project_2` — Main application, menus and system logic.
 
-# Technologies
+## Technologies
 
 - Java
 - Object-Oriented Programming (OOP)
