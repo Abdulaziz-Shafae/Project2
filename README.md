@@ -1,6 +1,6 @@
 # Car Pooling System
 
-# New Features
+## New Features
 
 The original project requirements were expanded with additional functionality to make the system more interactive and realistic.
 
