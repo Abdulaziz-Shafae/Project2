@@ -46,8 +46,22 @@ The history includes:
 
 - Car code
 - Final trip cost
-  since the trips of the user, will be shown so no need for the id and name
+Since the trip history belongs to the signed-in passenger, the passenger ID and name are not repeated.
 
+### Finished Trips
+Passengers can mark a reserved trip as finished.
+
+When a trip is finished:
+
+- The trip is moved from `Reserved Trips` to `Finished Trips`.
+- The finished trip remains available in the passenger's history.
+- The system extracts the car code from the stored trip information.
+- The matching car is found using its car code.
+- One passenger seat is released from the car.
+- The car capacity is updated automatically.
+- The user is asked for confirmation before finishing a trip.
+- Invalid trip numbers are handled and the user can retry.
+  
 ### Input Validation & Exception Handling
 The system handles several invalid inputs:
 
@@ -58,6 +72,8 @@ The system handles several invalid inputs:
 - Invalid discount codes.
 - Cars with zero capacity.
 - Cars that have reached maximum capacity.
+- Invalid trip numbers.
+- Invalid yes/no confirmation input.
 
 ## OOP Concepts Used
 
