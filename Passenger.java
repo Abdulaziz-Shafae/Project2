@@ -18,6 +18,9 @@ public abstract class Passenger {
 //here we store the trips of the passenger
     public ArrayList<String> trips= new ArrayList<>();
 
+//here we store the done trips of the passenger
+    public ArrayList<String> doneTrips= new ArrayList<>();
+
 
     public Passenger() {
         System.out.print(MAIN);
@@ -62,7 +65,12 @@ public abstract class Passenger {
         this.tripCost = tripCost;
     }
 
-//check if the capacity in not 0 and if it not full
+    public ArrayList<String> getTrips() {
+        return trips;
+    }
+
+
+    //check if the capacity in not 0 and if it not full
     protected boolean checkCap(Car car){
 
         boolean checkCap=true;

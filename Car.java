@@ -50,7 +50,12 @@ public class Car {
         curPassengers++;
     }
 
-//show the cars
+    public void removePass(){
+        curPassengers--;
+    }
+
+
+    //show the cars
     public void display(){
 
         System.out.println("Car code:" + getCode()+

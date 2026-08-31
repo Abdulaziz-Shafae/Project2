@@ -8,6 +8,7 @@ public class Project_2 {
     static  ArrayList<String> discounts= new ArrayList<>();
     static Scanner s = new Scanner(System.in);
 
+    static int sleepTime= 1000;
 
     public static final String MAIN        = "\u001B[97m";
     public static final String BG_YELLOW   = "\u001B[43m";
@@ -18,6 +19,7 @@ public class Project_2 {
     public static final String ITALIC        = "\u001B[3m";
     public static final String GREEN = "\u001B[32m";
     public static final String CYAN = "\u001B[36m";
+    public static final String RED = "\u001B[31m";
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -102,23 +104,23 @@ public class Project_2 {
                 case 1:
 
                     sp1.reserveCar(c1);
-                    Thread.sleep(1500);
+                    Thread.sleep(sleepTime);
 
                     sp2.reserveCar(c6);
-                    Thread.sleep(1500);
+                    Thread.sleep(sleepTime);
 
                     nsp2.reserveCar(c6);
-                    Thread.sleep(1500);
+                    Thread.sleep(sleepTime);
 
                     nsp1.reserveCar(c2);
-                    Thread.sleep(1500);
+                    Thread.sleep(sleepTime);
 
 
                     int i =1;
                     for ( Passenger p : passenger){
                         System.out.println("\n----- "+GREEN+"Passenger "+i+MAIN+" -----");
                         System.out.println(p.toString());
-                        Thread.sleep(1500);
+                        Thread.sleep(sleepTime);
                         i++;
                     }
 
@@ -195,7 +197,7 @@ public class Project_2 {
                             }
                             passenger.add(curP);
                             choice=4;
-                            Thread.sleep(1500);
+                            Thread.sleep(sleepTime);
 
                             sp1.reserveCar(c1);
                             sp2.reserveCar(c1);
@@ -237,9 +239,11 @@ public class Project_2 {
                     "\n1.Show routes" +
                     "\n2.Show cars" +
                     "\n3.Reserved trips" +
-                    "\n4.Reserve a car" +
-                    "\n5."+ ((curP instanceof SubPass )? "UnSubscribe" : "Subscribe") +
-                    "\n6.Exit" +
+                    "\n4.finished trips" +
+                    "\n5.finish a trip" +
+                    "\n6.Reserve a car" +
+                    "\n7."+ ((curP instanceof SubPass )? "UnSubscribe" : "Subscribe") +
+                    "\n8.Exit" +
                     "\nChoose a number: ");
             try {
                 choiceU=s.nextInt();
@@ -250,44 +254,156 @@ public class Project_2 {
             }
 
             switch (choiceU) {
-
+//Show routes
                 case 1:
+
+                    System.out.println("\n-------- " + CYAN + "Routes"+ MAIN + " --------");
 
                     i = 1;
                     for (Route r : routes) {
-                        System.out.println("\n----- "+GREEN+"Route " + i +MAIN+ " -----");
+                        System.out.println("\n----- " + GREEN + "Route " + i + MAIN + " -----");
                         r.display();
-                        Thread.sleep(1500);
-
+                        Thread.sleep(sleepTime);
                         i++;
                     }
 
-                    break;
 
+                    break;
+//Show cars
                 case 2:
+                    System.out.println("\n-------- " + CYAN + "Cars"+ MAIN + " --------");
 
                     i = 1;
                     for (Car c : cars) {
                         System.out.println("\n----- "+GREEN+"Car " + i +MAIN+ " -----");
                         c.display();
-                        Thread.sleep(1500);
+                        Thread.sleep(sleepTime);
                         i++;
                     }
 
                     break;
+//Reserved trips
                 case 3:
 
-                    i=1;
-                    for( String t : curP.trips ){
-                        System.out.println("\n----- "+GREEN+"Trip " + i +MAIN+ " -----");
-                        System.out.println(t);
-                        Thread.sleep(1500);
-                        i++;
+                    if(curP.trips.isEmpty()){
+                        System.out.println("\n----- " + GREEN + "There Is No Reserved Trips " + MAIN + " -----");
+                    }else {
+                        System.out.println("\n-------- " + CYAN + "Reserved Trips"+ MAIN + " --------");
+
+                        i = 1;
+                        for (String t : curP.trips) {
+                            System.out.println("\n----- " + GREEN + "Trip " + i + MAIN + " -----");
+                            System.out.println(t);
+                            Thread.sleep(sleepTime);
+                            i++;
+                        }
                     }
 
                     break;
-
+//finished trips
                 case 4:
+
+                    if(curP.doneTrips.isEmpty()){
+                        System.out.println("\n----- " + GREEN + "There Is No Finished Trips " + MAIN + " -----");
+                    }else {
+                        System.out.println("\n-------- " + CYAN + "Finished Trips"+ MAIN + " --------");
+                        i = 1;
+                        for (String t : curP.doneTrips) {
+                            System.out.println("\n----- " + GREEN + "Trip " + i + MAIN + " -----");
+                            System.out.println(t);
+                            Thread.sleep(sleepTime);
+                            i++;
+                        }
+                    }
+
+                    break;
+//finish a trip
+                case 5:
+
+                    if(curP.trips.isEmpty()){
+                        System.out.println("\n----- " + GREEN + "There Is No Reserved Trips " + MAIN + " -----");
+                        break;
+                    }else {
+                        System.out.println("\n-------- " + CYAN + "Reserved Trips"+ MAIN + " --------");
+
+                        i = 1;
+                        for (String t : curP.trips) {
+                            System.out.println("\n----- " + GREEN + "Trip " + i + MAIN + " -----");
+                            System.out.println(t);
+                            Thread.sleep(sleepTime);
+                            i++;
+                        }
+                    }
+
+                    int tripNum;
+
+                    do {
+                        System.out.print("\nEnter the number of the trip You finished: ");
+
+                        try {
+                            //check if it's an int
+                            tripNum = s.nextInt();
+                            //check if it's inside the array list
+                            if (tripNum - 1 < curP.trips.size() && tripNum > 0) {
+
+                                System.out.println("Are you sure you finished this trip?");
+
+                                System.out.println("----- " + GREEN + "Trip " + tripNum + MAIN + " -----");
+                                System.out.println(curP.trips.get(tripNum - 1));
+
+                                String temp;
+                                s.nextLine();
+                                do {
+                                    System.out.print(RED + "yes - no ? " + MAIN);
+                                    temp = s.nextLine();
+                                    if (temp.equalsIgnoreCase("yes") || temp.equalsIgnoreCase("y")) {
+
+
+                                        String finishedTrip = curP.trips.get(tripNum -1 );
+
+                                        curP.doneTrips.add(finishedTrip);
+
+                                        int start = finishedTrip.indexOf("Car code: ") + "Car code: ".length();
+                                        int end = finishedTrip.indexOf("\n", start);
+
+                                        String carCode = finishedTrip.substring(start, end);
+
+                                        for(Car c : cars){
+                                            if(c.getCode().equals(carCode)){
+                                                c.removePass();
+                                                break;
+                                            }
+                                        }
+                                        curP.trips.remove(tripNum - 1);
+                                        System.out.println("\n" + BG_GREEN + MAIN + BOLD + " Successfully finished " + RESET + MAIN);
+
+
+                                        break;
+
+                                    } else if (temp.equalsIgnoreCase("no") || temp.equalsIgnoreCase("n")) {
+                                        break;
+                                    } else {
+                                        System.out.println("\n" + BG_YELLOW + MAIN + BOLD + " Enter yes - no " + RESET + MAIN);
+                                    }
+                                } while (true);
+
+                            } else {
+                                System.out.println("\n" + BG_YELLOW + MAIN + BOLD + " Enter valid trip number " + RESET + MAIN);
+                                tripNum = -3;
+                            }
+
+                        } catch (InputMismatchException e) {
+                            s.nextLine();
+                            System.out.println("\n" + BG_YELLOW + MAIN + BOLD + " Enter the trip number " + RESET + MAIN);
+                            tripNum=-3;
+
+                        }
+                    }while (tripNum==-3);
+
+                    break;
+//Reserve a car
+                case 6:
+                    System.out.println("\n-------- " + CYAN + "Reserve a Car"+ MAIN + " --------");
 
                     i=1;
                     for(Car r : cars){
@@ -297,13 +413,13 @@ public class Project_2 {
                                 "\nPick up address: "+ r.getRoute().getPickUp()+
                                 "\nDestination address: " + r.getRoute().getDestination()+
                                 "\nBase price: " + r.getRoute().getTripPrice());
-                        Thread.sleep(1500);
+                        Thread.sleep(sleepTime);
 
                     }
                     boolean check;
+                    s.nextLine();
                     do {
-                        System.out.print("Enter the car code: ");
-                        s.nextLine();
+                        System.out.print("\nEnter the car code: ");
                         String tempCode = s.nextLine();
                         check = false;
                         for (Car r : cars) {
@@ -321,51 +437,74 @@ public class Project_2 {
                     }while (!check);
 
                     break;
+//UnSubscribe - Subscribe
+                case 7:
+                    System.out.println("\nAre you sure you want to "+  ((curP instanceof SubPass )? "UnSubscribe" : "Subscribe")  +" ?");
 
-                case 5:
-                    int index = passenger.indexOf(curP);
+                    s.nextLine();
+                    String temp;
 
-                    if (curP instanceof SubPass){
-
-                        NonSubPass removeSub = new NonSubPass(curP.getName(), curP.getId(),true);
-
-                        removeSub.trips.addAll(curP.trips);
-                        removeSub.setCar(curP.getCar());
-                        removeSub.setTripCost(curP.getTripCost());
-
-                        passenger.set(index, removeSub);
-
-                        curP = removeSub;
-
-                        System.out.println("\n" + BG_GREEN + MAIN + BOLD + " UnSubscribed Successfully " + RESET + MAIN);
+                    do{
+                    System.out.print(RED+"yes - no ? "+MAIN);
+                    temp=s.nextLine();
+                    if(temp.equalsIgnoreCase("no") || temp.equalsIgnoreCase("n" )){
+                        break;
+                    } else if (temp.equalsIgnoreCase("yes") || temp.equalsIgnoreCase("y" )) {
 
 
-                    }else {
+                        int index = passenger.indexOf(curP);
 
-                        SubPass newSub = new SubPass(curP.getName(), curP.getId());
+                        if (curP instanceof SubPass) {
 
-                        newSub.trips.addAll(curP.trips);
-                        newSub.setCar(curP.getCar());
-                        newSub.setTripCost(curP.getTripCost());
+                            NonSubPass removeSub = new NonSubPass(curP.getName(), curP.getId(), true);
 
-                        passenger.set(index, newSub);
+                            removeSub.trips.addAll(curP.trips);
+                            removeSub.doneTrips.addAll(curP.doneTrips);
+                            removeSub.setCar(curP.getCar());
+                            removeSub.setTripCost(curP.getTripCost());
 
-                        curP = newSub;
+                            passenger.set(index, removeSub);
 
-                        System.out.println("\n" + BG_GREEN + MAIN + BOLD + " Subscribed Successfully " + RESET + MAIN);
+                            curP = removeSub;
 
+                            System.out.println("\n" + BG_GREEN + MAIN + BOLD + " UnSubscribed Successfully " + RESET + MAIN);
+
+
+                        } else {
+
+                            SubPass newSub = new SubPass(curP.getName(), curP.getId());
+
+                            newSub.trips.addAll(curP.trips);
+                            newSub.doneTrips.addAll(curP.doneTrips);
+                            newSub.setCar(curP.getCar());
+                            newSub.setTripCost(curP.getTripCost());
+
+                            passenger.set(index, newSub);
+
+                            curP = newSub;
+
+                            System.out.println("\n" + BG_GREEN + MAIN + BOLD + " Subscribed Successfully " + RESET + MAIN);
+
+                        }
+
+                        break;
+
+                    } else {
+                        System.out.println("\n" + BG_YELLOW + MAIN + BOLD + " Enter yes - no " + RESET + MAIN);
                     }
+                    } while (true);
 
                     break;
 
-                case 6:
+//exit
+                case 8:
                     break;
 
                 default:
                     System.out.println("\n" + BG_YELLOW + MAIN + BOLD + " Enter valid number " + RESET + MAIN);
 
             }
-        }while (choiceU!=6);
+        }while (choiceU!=8);
 
 
     }
